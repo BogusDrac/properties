@@ -1,0 +1,126 @@
+{
+  "buy": [
+    {
+      "id": 1,
+      "title": "Modern Villa",
+      "location": "Dunusa",
+      "price": "R2,500,000",
+      "type": "villas",
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "garages": 2,
+      "size": "350m²",
+      "image": "/assets/"
+    },
+    {
+      "id": 2,
+      "title": "Luxury Apartment",
+      "location": "Makuleni",
+      "price": "R1,800,000",
+      "type": "apartments",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "garages": 1,
+      "size": "120m²",
+      "image": "assets/images/img2"
+    },
+    {
+      "id": 3,
+      "title": "Family Home",
+      "location": "Nzhelele",
+      "price": "R2,000,000",
+      "type": "houses",
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "garages": 2,
+      "size": "250m²",
+      "image": "assets/images/img3"
+    },
+    {
+      "id": 4,
+      "title": "Beachfront Condo",
+      "location": "Muledane",
+      "price": "R3,200,000",
+      "type": "condos",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "size": "95m²",
+      "image": "assets/images/img4"
+    },
+    {
+      "id": 5,
+      "title": "Countryside Estate",
+      "location": "Dzanani",
+      "price": "R4,500,000",
+      "type": "estates",
+      "bedrooms": 5,
+      "bathrooms": 4,
+      "garages": 3,
+      "size": "500m²",
+      "image": "assets/images/img5"
+    }
+  ],
+  "rent": [
+    {
+      "id": 6,
+      "title": "Cozy House",
+      "location": "Loliwe",
+      "price": "R15,000/month",
+      "type": "houses",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "garages": 1,
+      "size": "200m²",
+      "image": "assets/images/img6"
+    },
+    {
+      "id": 7,
+      "title": "Studio Apartment",
+      "location": "Emagesini",
+      "price": "R8,000/month",
+      "type": "apartments",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "garages": 1,
+      "size": "45m²",
+      "image": "assets/images/img7"
+    },
+    {
+      "id": 8,
+      "title": "Luxury Penthouse",
+      "location": "Thohoyandou",
+      "price": "R25,000/month",
+      "type": "penthouses",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "garages": 2,
+      "size": "180m²",
+      "image": "assets/images/img8"
+    },
+    {
+      "id": 9,
+      "title": "Townhouse Duplex",
+      "location": "Tshakhuma",
+      "price": "R12,000/month",
+      "type": "townhouses",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "garages": 1,
+      "size": "120m²",
+      "image": "assets/images/img9"
+    },
+    {
+      "id": 10,
+      "title": "Suburban Bungalow",
+      "location": "Sibasa",
+      "price": "R10,500/month",
+      "type": "bungalows",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "garages": 1,
+      "size": "140m²",
+      "image": "assets/images/img10"
+    }
+  ]
+}
