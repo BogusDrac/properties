@@ -181,64 +181,51 @@ const Search = () => {
   
 
 
-  /* favoritse */
-  const [favorites, setFavorites] = useState([]);
-  // Load favorites from localstorage on componet mount
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem('propertyfavorites');
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
-    }
-  }, []);
+const [order, setOrder] = useState([]);
+const [favorites, setFavorites] = useState([]);
 
-  const handleFilterChange = (filterType, value) => {
-    setSelectedFilters(prev => ({
-      ...prev,
-      [filterType]: value
-    }));
-  };
+// Load saved data on component mount
+useEffect(() => {
+ const orderProperties = localStorage.getItem('orderProperties');
+ const savedFavorites = localStorage.getItem('propertyFavorites');
+ 
+ if (orderProperties) setOrder(JSON.parse(orderProperties));
+ if (savedFavorites) setFavorites(JSON.parse(savedFavorites));
+}, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Search filters:', selectedFilters);
-  };
+const handleFilterChange = (filterType, value) => {
+ setSelectedFilters(prev => ({
+   ...prev,
+   [filterType]: value
+ }));
+};
 
-  // Toggle favorite status for a property
-  const toggleFavorite = (propertyId) => {
-    setFavorites(prevFavorites => {
-      const newFavorites = prevFavorites.includes(propertyId)
-        ? prevFavorites.filter(id => id !== propertyId)
-        : [...prevFavorites, propertyId];
-      
-      // Save to localStorage
-      localStorage.setItem('propertyFavorites', JSON.stringify(newFavorites));
-      return newFavorites;
-    });
-  };
+const handleSubmit = (e) => {
+ e.preventDefault();
+ console.log('Search filters:', selectedFilters);
+};
 
+const toggleOrder = (propertyId) => {
+ setOrder(prevOrder => {
+   const newOrder = prevOrder.includes(propertyId)
+     ? prevOrder.filter(id => id !== propertyId)
+     : [...prevOrder, propertyId];
+   
+   localStorage.setItem('orderProperties', JSON.stringify(newOrder));
+   return newOrder;
+ });
+};
 
-  /* order */
-  const [order, setOrder] = useState([])
-
-  // load order to local storage on component mount
-  useEffect(() => {
-    const orderProperties = localStorage.getItem('orderProperties');
-    if (orderProperties) {
-      setOrder(JSON.parse(orderProperties));
-    }
-  }, [])
-
-  // Toggle order status for a property
-  const toggleOrder = (protertyId) => {
-    setOrder(prevOrder => {
-      const newOrder = prevOrder.includes(protertyId)
-      ? newOrder.filter(id => id !== protertyId)
-      : [ ...prevOrder, protertyId ];
-
-      localStorage.setItem('orderProperties', JSON.stringify(newOrder));
-      return newOrder;
-    });
-  };
+const toggleFavorite = (propertyId) => {
+ setFavorites(prevFavorites => {
+   const newFavorites = prevFavorites.includes(propertyId)
+     ? prevFavorites.filter(id => id !== propertyId)
+     : [...prevFavorites, propertyId];
+   
+   localStorage.setItem('propertyFavorites', JSON.stringify(newFavorites));
+   return newFavorites;
+ });
+};
 
 
 

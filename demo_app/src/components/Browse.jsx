@@ -160,131 +160,224 @@ const properties = {
 };
 
 const Browse = () => {
-
-  /* order */
-  const [order, setOrder] = useState([])
-
-  // load order to local storage on component mount
-  useEffect(() => {
-    const orderProperties = localStorage.getItem('orderProperties');
-    if (orderProperties) {
-      setOrder(JSON.parse(orderProperties));
-    }
-  }, [])
-
-  // Toggle order status for a property
-  const toggleOrder = (protertyId) => {
-    setOrder(prevOrder => {
-      const newOrder = prevOrder.includes(protertyId)
-      ? newOrder.filter(id => id !== protertyId)
-      : [ ...prevOrder, protertyId ];
-
-      localStorage.setItem('orderProperties', JSON.stringify(newOrder));
-      return newOrder;
-    });
-  };
-
-
-
-  /* favorites */
+  
+  // order and favorites to localstorage
+  const [order, setOrder] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  // Load favorites from localStorage on component mount
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem('propertyFavorites');
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
+  const loadFromLocalStorage = (key, setState) => {
+    const data = localStorage.getItem(key);
+      if (data) {
+      setState(JSON.parse(data));
     }
+  };
+
+  useEffect(() => {
+    loadFromLocalStorage('orderProperties', setOrder);
+    loadFromLocalStorage('propertyFavorites', setFavorites);
   }, []);
 
-  // Toggle favorite status for a property
-  const toggleFavorite = (propertyId) => {
-    setFavorites(prevFavorites => {
-      const newFavorites = prevFavorites.includes(propertyId)
-        ? prevFavorites.filter(id => id !== propertyId)
-        : [...prevFavorites, propertyId];
-      
-      // Save to localStorage
-      localStorage.setItem('propertyFavorites', JSON.stringify(newFavorites));
-      return newFavorites;
+  const toggleItem = (key, state, setState, propertyId) => {
+    setState(prevState => {
+      const newState = prevState.includes(propertyId)
+        ? prevState.filter(id => id !== propertyId)
+        : [...prevState, propertyId];
+
+      localStorage.setItem(key, JSON.stringify(newState));
+      return newState;
     });
   };
 
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 dark:bg-orange-950 gap-6 p-6 mt-0 md:mt-0 sm:mt-[-40px]">
-      {[...properties.buy, ...properties.rent].map((property) => (
-        <div
-          key={property.id}
-          className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl 
-            transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
-        >
-          <div className="relative">
-            <img
-              src={property.image}
-              alt={property.title}
-              className="w-full h-48 object-cover"
-            />
-            <button
-              onClick={() => toggleFavorite(property.id)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-white/80 
-                dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 
-                transition-all duration-300"
-            >
-              <Heart 
-                className={`w-5 h-5 ${
-                  favorites.includes(property.id)
-                    ? 'fill-red-500 text-red-500'
-                    : 'text-gray-600 dark:text-gray-300'
-                }`}
+  const toggleOrder = (propertyId) => toggleItem('orderProperties', order, setOrder, propertyId);
+  const toggleFavorite = (propertyId) => toggleItem('propertyFavorites', favorites, setFavorites, propertyId);
+  //end
+
+
+  const [showMoreBuy, setShowMoreBuy] = useState(false);
+  const [showMoreRent, setShowMoreRent] = useState(false);
+
+  const buyProperties = showMoreBuy ? properties.buy : properties.buy.slice(0, 4);
+  const rentProperties = showMoreRent ? properties.rent : properties.rent.slice(0, 4);
+
+return (
+  <div className="p-6 mt-0 md:mt-0 sm:mt-[-40px] dark:bg-orange-950">
+    
+    {/* Buy Properties Section */}
+    <div>
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Buy Properties</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {buyProperties.map((property) => (
+          <div
+            key={property.id}
+            className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl 
+              transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
+          >
+            <div className="relative">
+              <img
+                src={property.image}
+                alt={property.title}
+                className="w-full h-48 object-cover"
               />
-            </button>
-          </div>
-
-          <div className="p-4">
-            <div className="flex justify-between items-start mb-2">
-              <h3 className="text-lg font-semibold dark:text-white">
-                {property.title}
-              </h3>
-              <p className="text-orange-600 dark:text-white font-bold">{property.price}</p>
+              <button
+                onClick={() => toggleFavorite(property.id)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-white/80 
+                  dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 
+                  transition-all duration-300"
+              >
+                <Heart 
+                  className={`w-5 h-5 ${
+                    favorites.includes(property.id)
+                      ? 'fill-red-500 text-red-500'
+                      : 'text-gray-600 dark:text-gray-300'
+                  }`}
+                />
+              </button>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              {property.location}
-            </p>
 
-            <div className="grid grid-cols-5 gap-2 text-sm text-gray-600 dark:text-gray-300">
-              <div className="flex items-center gap-1">
-                <BedDouble className="w-4 h-4" />
-                <span>{property.bedrooms}</span>
+            <div className="p-4">
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="text-lg font-semibold dark:text-white">
+                  {property.title}
+                </h3>
+                <p className="text-orange-600 dark:text-white font-bold">{property.price}</p>
               </div>
-              <div className="flex items-center gap-1">
-                <Bath className="w-4 h-4" />
-                <span>{property.bathrooms}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Car className="w-4 h-4" />
-                <span>{property.garages}</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Maximize className="w-4 h-4" />
-                <span>{property.size}</span>
-              </div>
-              <div className="flex items-center gap-1 pl-6">
-                <Link 
-                  className=""
-                  to="/order">
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                {property.location}
+              </p>
+
+              <div className="grid grid-cols-5 gap-2 text-sm text-gray-600 dark:text-gray-300">
+                <div className="flex items-center gap-1">
+                  <BedDouble className="w-4 h-4" />
+                  <span>{property.bedrooms}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Bath className="w-4 h-4" />
+                  <span>{property.bathrooms}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Car className="w-4 h-4" />
+                  <span>{property.garages}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Maximize className="w-4 h-4" />
+                  <span>{property.size}</span>
+                </div>
+                <div className="flex items-center gap-1 pl-6">
+                  <Link to="/order">
                     <button
                       onClick={() => toggleOrder(property.id)}
                       className='animate-bounce transition-colors'>
                       <BiCart className="hover:scale-150 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
                     </button>
-                </Link>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
+        ))}
+      </div>
+
+      {properties.buy.length > 4 && (
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={() => setShowMoreBuy(!showMoreBuy)}
+            className="px-4 py-2 bg-orange-600 text-white font-semibold rounded-lg 
+              hover:bg-orange-700 transition-all duration-300"
+          >
+            {showMoreBuy ? "Show Less Buy" : "Show More Buy"}
+          </button>
         </div>
-      ))}
+      )}
     </div>
-  );
-};
+
+    {/* Rent Properties Section */}
+    <div className="mt-12">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">Rent Properties</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {rentProperties.map((property) => (
+          <div
+            key={property.id}
+            className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl 
+              transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]"
+          >
+            <div className="relative">
+              <img
+                src={property.image}
+                alt={property.title}
+                className="w-full h-48 object-cover"
+              />
+              <button
+                onClick={() => toggleFavorite(property.id)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-white/80 
+                  dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 
+                  transition-all duration-300"
+              >
+                <Heart 
+                  className={`w-5 h-5 ${
+                    favorites.includes(property.id)
+                      ? 'fill-red-500 text-red-500'
+                      : 'text-gray-600 dark:text-gray-300'
+                  }`}
+                />
+              </button>
+            </div>
+
+            <div className="p-4">
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="text-lg font-semibold dark:text-white">
+                  {property.title}
+                </h3>
+                <p className="text-orange-600 dark:text-white font-bold">{property.price}</p>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                {property.location}
+              </p>
+
+              <div className="grid grid-cols-5 gap-2 text-sm text-gray-600 dark:text-gray-300">
+                <div className="flex items-center gap-1">
+                  <BedDouble className="w-4 h-4" />
+                  <span>{property.bedrooms}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Bath className="w-4 h-4" />
+                  <span>{property.bathrooms}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Car className="w-4 h-4" />
+                  <span>{property.garages}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Maximize className="w-4 h-4" />
+                  <span>{property.size}</span>
+                </div>
+                <div className="flex items-center gap-1 pl-6">
+                  <Link to="/order">
+                    <button
+                      onClick={() => toggleOrder(property.id)}
+                      className='animate-bounce transition-colors'>
+                      <BiCart className="hover:scale-150 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {properties.rent.length > 4 && (
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={() => setShowMoreRent(!showMoreRent)}
+            className="px-4 py-2 bg-orange-600 text-white font-semibold rounded-lg 
+              hover:bg-orange-700 transition-all duration-300"
+          >
+            {showMoreRent ? "Show Less Rent" : "Show More Rent"}
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+)};
 
 export default Browse;
