@@ -6,7 +6,7 @@ import Browse from "./components/Browse";
 import SavedProperties from "./components/SavedProperties";
 import PageNotFound from "./components/pages/PageNotFound";
 import Order from "./components/Order";
-import AllData from "./components/AllData";
+
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
           <Navbar />  
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<AllData />} />
+            <Route path="/explore" element={<Browse />} />
             <Route path="/order" element={<Order />} />
             <Route path="/saved" element={<SavedProperties />} />
             <Route path="/*" element={<PageNotFound />} />

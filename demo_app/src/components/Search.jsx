@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Search as SearchIcon, BedDouble, Bath, Car, Maximize, Heart } from 'lucide-react';
+import {  BedDouble, Bath, Car, Maximize, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 
@@ -92,7 +92,7 @@ const properties = {
       id: 6,
       title: "Cozy House",
       location: "Loliwe",
-      price: "R15,000/month",
+      price: "R2,500/month",
       type: "houses",
       bedrooms: 3,
       bathrooms: 2,
@@ -104,7 +104,7 @@ const properties = {
       id: 7,
       title: "Studio Apartment",
       location: "Emagesini",
-      price: "R8,000/month",
+      price: "R1,500/month",
       type: "apartments",
       bedrooms: 1,
       bathrooms: 1,
@@ -116,7 +116,7 @@ const properties = {
       id: 8,
       title: "PentHouse",
       location: "Loliwe",
-      price: "R25,000/month",
+      price: "R1,000/month",
       type: "penthouses",
       bedrooms: 3,
       bathrooms: 3,
@@ -128,7 +128,7 @@ const properties = {
       id: 9,
       title: "Apartment",
       location: "Emagesini",
-      price: "R13,000/month",
+      price: "R900/month",
       type: "apartments",
       bedrooms: 2,
       bathrooms: 2,
@@ -140,7 +140,7 @@ const properties = {
       id: 10,
       title: "Estate",
       location: "Makuleni",
-      price: "R10,500/month",
+      price: "R8,500/month",
       type: "estates",
       bedrooms: 3,
       bathrooms: 2,
@@ -152,7 +152,7 @@ const properties = {
       id: 11,
       title: "Condo",
       location: "Emagesini",
-      price: "R30,500/month",
+      price: "R10,500/month",
       type: "estates",
       bedrooms: 4,
       bathrooms: 2,
@@ -321,7 +321,7 @@ const toggleFavorite = (propertyId) => {
                 <button
                   onClick={() => toggleOrder(property.id)}
                   className='animate-bounce transition-colors'>
-                    <BiCart className="hover:scale-150 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
+                    <BiCart className="hover:scale-150 text-green-600 font-bold scale-125 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5 dark:text-green-400" />
                 </button>
             </Link>
           </div>

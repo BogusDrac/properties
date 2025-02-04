@@ -1,5 +1,6 @@
-{
-  "buy": [
+{ 
+  "properties": {
+    "buy": [
     {
       "id": 1,
       "title": "Modern Villa",
@@ -10,7 +11,12 @@
       "bathrooms": 3,
       "garages": 2,
       "size": "350m²",
-      "image": "/assets/"
+      "image": "./assets/images/rdp1.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 2,
@@ -22,7 +28,12 @@
       "bathrooms": 2,
       "garages": 1,
       "size": "120m²",
-      "image": "assets/images/img2"
+      "image": "./assets/images/rdp2.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 3,
@@ -34,7 +45,12 @@
       "bathrooms": 3,
       "garages": 2,
       "size": "250m²",
-      "image": "assets/images/img3"
+      "image": "./assets/images/rdp3.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 4,
@@ -46,7 +62,12 @@
       "bathrooms": 2,
       "garages": 1,
       "size": "95m²",
-      "image": "assets/images/img4"
+      "image": "./assets/images/rdp4.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 5,
@@ -58,7 +79,12 @@
       "bathrooms": 4,
       "garages": 3,
       "size": "500m²",
-      "image": "assets/images/img5"
+      "image": "./assets/images/rdp5.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     }
   ],
   "rent": [
@@ -72,7 +98,12 @@
       "bathrooms": 2,
       "garages": 1,
       "size": "200m²",
-      "image": "assets/images/img6"
+      "image": "./assets/images/rdp6.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 7,
@@ -84,7 +115,12 @@
       "bathrooms": 1,
       "garages": 1,
       "size": "45m²",
-      "image": "assets/images/img7"
+      "image": "./assets/images/rdp7.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 8,
@@ -96,7 +132,12 @@
       "bathrooms": 3,
       "garages": 2,
       "size": "180m²",
-      "image": "assets/images/img8"
+      "image": "./assets/images/rdp8.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 9,
@@ -108,7 +149,12 @@
       "bathrooms": 2,
       "garages": 1,
       "size": "120m²",
-      "image": "assets/images/img9"
+      "image": "./assets/images/rdp9.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     },
     {
       "id": 10,
@@ -120,7 +166,32 @@
       "bathrooms": 2,
       "garages": 1,
       "size": "140m²",
-      "image": "assets/images/img10"
+      "image": "./assets/images/rdp10.jpg",
+      "owner": "Sphokazi Dube",
+      "email": "dubespho12@gmail.com",
+      "contact": "+27 71 234 5678",
+      "ownerPic": "./assets/images/pers1.jpg",
+      "address": "123 Villa Street, Dunusa"
     }
   ]
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

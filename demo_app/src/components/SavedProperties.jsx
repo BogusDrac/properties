@@ -301,7 +301,7 @@ const SavedProperties = () => {
                       <button
                         onClick={() => toggleOrder(property.id)}
                         className='animate-bounce transition-colors'>
-                        <BiCart className="hover:scale-150 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
+                        <BiCart className="hover:scale-150 text-green-600 font-bold scale-125 dark:text-green-400 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
                       </button>
                   </Link>
                 </div>
