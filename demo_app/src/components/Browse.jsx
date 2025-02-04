@@ -1,25 +1,45 @@
-import { useState } from 'react';
-
-import { 
-  Heart, 
-  BedDouble, 
-  Bath, 
-  Car, 
-  Maximize 
-} from "lucide-react";
-
+import { useState, useEffect } from 'react';
+import { Heart, BedDouble, Bath, Car, Maximize } from "lucide-react";
 import { BiCart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
-import { 
-  favorites, 
-  toggleFavorite, 
-  toggleOrder 
-} from './save/PropertyManager';
+
 
 
 const Browse = ({ properties }) => {
   
+  // order and favorites to localstorage
+  const [order, setOrder] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  const loadFromLocalStorage = (key, setState) => {
+    const data = localStorage.getItem(key);
+      if (data) {
+      setState(JSON.parse(data));
+    }
+  };
+
+  useEffect(() => {
+    loadFromLocalStorage('orderProperties', setOrder);
+    loadFromLocalStorage('propertyFavorites', setFavorites);
+  }, []);
+
+  const toggleItem = (key, state, setState, propertyId) => {
+    setState(prevState => {
+      const newState = prevState.includes(propertyId)
+        ? prevState.filter(id => id !== propertyId)
+        : [...prevState, propertyId];
+
+      localStorage.setItem(key, JSON.stringify(newState));
+      return newState;
+    });
+  };
+
+  const toggleOrder = (propertyId) => toggleItem('orderProperties', order, setOrder, propertyId);
+  const toggleFavorite = (propertyId) => toggleItem('propertyFavorites', favorites, setFavorites, propertyId);
+  //end
+
+
   const [showMoreBuy, setShowMoreBuy] = useState(false);
   const [showMoreRent, setShowMoreRent] = useState(false);
 
@@ -94,7 +114,7 @@ return (
                     <button
                       onClick={() => toggleOrder(property.id)}
                       className='animate-bounce transition-colors'>
-                      <BiCart className="hover:scale-150 text-green-600 font-bold scale-125 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5 dark:text-green-400" />
+                      <BiCart className="hover:scale-150 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
                     </button>
                   </Link>
                 </div>
@@ -182,7 +202,7 @@ return (
                     <button
                       onClick={() => toggleOrder(property.id)}
                       className='animate-bounce transition-colors'>
-                      <BiCart className="hover:scale-150 text-green-600 font-bold scale-125 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5 dark:text-green-400" />
+                      <BiCart className="hover:scale-150 transition-all duration-200 dark:hover:text-white transform hover:text-black w-5 h-5" />
                     </button>
                   </Link>
                 </div>
