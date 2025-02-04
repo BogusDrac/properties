@@ -22,6 +22,9 @@ import img10 from "./assets/images/rdp10.jpg";
 import img11 from "./assets/images/rdp11.jpg";
 import img12 from "./assets/images/rdp12.jpg";
 
+// Import owner images
+import pers1 from "./assets/images/pers1.jpg"
+
 // Image mapping object
 const imageMap = {
   "./assets/images/rdp1.jpg": img1,
@@ -36,6 +39,7 @@ const imageMap = {
   "./assets/images/rdp10.jpg": img10,
   "./assets/images/rdp11.jpg": img11,
   "./assets/images/rdp12.jpg": img12,
+  "./assets/images/pers1.jpg": pers1,
 };
 
 function App() {
@@ -56,11 +60,13 @@ function App() {
         const processedData = {
           buy: data.buy.map(property => ({
             ...property,
-            image: imageMap[property.image] || property.image
+            image: imageMap[property.image] || property.image,
+            ownerPic: imageMap[property.ownerPic] || property.ownerPic,
           })),
           rent: data.rent.map(property => ({
             ...property,
-            image: imageMap[property.image] || property.image
+            image: imageMap[property.image] || property.image,
+            ownerPic: imageMap[property.ownerPic] || property.ownerPic,
           }))
         };
 
@@ -93,8 +99,8 @@ function App() {
             path="/explore" 
             element={<Browse properties={properties} />} 
           />
-          <Route path="/order" element={<Order />} />
-          <Route path="/saved" element={<SavedProperties />} />
+          <Route path="/order" element={<Order properties={properties} />} />
+          <Route path="/saved" element={<SavedProperties properties={properties} />} />
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
         <Footer />

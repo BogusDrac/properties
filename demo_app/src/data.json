@@ -100,7 +100,7 @@
       "owner": "John Smith",
       "email": "john.smith@email.com",
       "contact": "+27 71 234 5678",
-      "ownerPic": "/api/placeholder/64/64",
+      "ownerPic": "./assets/images/pers1.jpg",
       "address": "123 Villa Street, Dunusa"
     }
   ],
@@ -204,12 +204,19 @@
       "owner": "John Smith",
       "email": "john.smith@email.com",
       "contact": "+27 71 234 5678",
-      "ownerPic": "/api/placeholder/64/64",
+      "ownerPic": "./assets/images/pers1.jpg",
       "address": "123 Villa Street, Dunusa"
     }
   ]
   }
 }
+
+
+
+
+
+
+
 
 
 
