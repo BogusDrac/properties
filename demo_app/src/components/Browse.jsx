@@ -1,8 +1,21 @@
-import { useState, useEffect } from 'react';
-import { Heart, BedDouble, Bath, Car, Maximize } from "lucide-react";
+import { useState } from 'react';
+
+import { 
+  Heart, 
+  BedDouble, 
+  Bath, 
+  Car, 
+  Maximize 
+} from "lucide-react";
+
 import { BiCart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { order, favorites, toggleFavorite, toggleOrder, toggleItem } from './save/PropertyManager';
+
+import { 
+  favorites, 
+  toggleFavorite, 
+  toggleOrder 
+} from './save/PropertyManager';
 
 
 const Browse = ({ properties }) => {

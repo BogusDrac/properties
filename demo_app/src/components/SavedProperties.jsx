@@ -1,6 +1,18 @@
-import { useState, useEffect } from 'react';
+import { 
+  useState, 
+  useEffect 
+} from 'react';
+
 import { Link } from 'react-router-dom';
-import { Heart, BedDouble, Bath, Car, Maximize } from 'lucide-react';
+
+import { 
+  Heart, 
+  BedDouble, 
+  Bath, 
+  Car, 
+  Maximize 
+} from 'lucide-react';
+
 import { BiCart } from 'react-icons/bi';
 
 const SavedProperties = ({ properties }) => {

@@ -1,5 +1,16 @@
-import { useEffect, useState } from 'react';
-import {  BedDouble, Bath, Car, Maximize, Heart } from 'lucide-react';
+import { 
+  useEffect, 
+  useState 
+} from 'react';
+
+import {  
+  BedDouble, 
+  Bath, 
+  Car, 
+  Maximize, 
+  Heart 
+} from 'lucide-react';
+
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
 import PropertyFilters from './SearchLogic/PropertyFilters';
