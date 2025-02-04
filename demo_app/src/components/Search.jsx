@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {  BedDouble, Bath, Car, Maximize, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { BiCart } from 'react-icons/bi';
+import PropertyFilters from './SearchLogic/PropertyFilters';
 
 
 
@@ -242,43 +243,6 @@ const toggleFavorite = (propertyId) => {
 
 
 
-  //Filter properties based on selected filters
-  const filterProperties = (properties) => {
-    return properties.filter(property => {
-      return (
-        (selectedFilters.type === 'all' || property.type === selectedFilters.type) &&
-        (selectedFilters.location === 'all' || property.location.toLowerCase() === selectedFilters.location.toLowerCase()) &&
-        (selectedFilters.bedrooms === 'all' || 
-          (selectedFilters.bedrooms === '4+' ? property.bedrooms >= 4 : property.bedrooms === parseInt(selectedFilters.bedrooms))) &&
-        (selectedFilters.bathrooms === 'all' || 
-          (selectedFilters.bathrooms === '4+' ? property.bathrooms >= 4 : property.bathrooms === parseInt(selectedFilters.bathrooms))) &&
-        (selectedFilters.garages === 'all' || 
-          (selectedFilters.garages === 'none' ? property.garages === 0 : 
-          (selectedFilters.garages === '3+' ? property.garages >= 3 : property.garages === parseInt(selectedFilters.garages)))) &&
-        (selectedFilters.propertySize === 'all' || 
-          (selectedFilters.propertySize === 'small' ? parseFloat(property.size) < 100 :
-          (selectedFilters.propertySize === 'medium' ? parseFloat(property.size) >= 100 && parseFloat(property.size) <= 200 :
-          (selectedFilters.propertySize === 'large' ? parseFloat(property.size) > 200 && parseFloat(property.size) <= 300 :
-          (selectedFilters.propertySize === 'xlarge' ? parseFloat(property.size) > 300 : true))))) &&
-        (selectedFilters.priceRange === 'all' || 
-          (activeTab === 'buy' ? 
-            (selectedFilters.priceRange === '1st' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) >= 600000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 800000 :
-            (selectedFilters.priceRange === '2nd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 800000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 1000000 :
-            (selectedFilters.priceRange === '3rd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 1000000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 2000000 :
-            (selectedFilters.priceRange === '4th' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 2000000 : true)))) :
-            /* Rent */
-            (selectedFilters.priceRange === '1st' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) >= 2000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 4000 :
-            (selectedFilters.priceRange === '2nd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 4000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 8000 :
-            (selectedFilters.priceRange === '3rd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 8000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 10000 :
-            (selectedFilters.priceRange === '4th' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 5000 : true))))))
-      );
-    });
-  };
-
-
-
-
-
   const PropertyCard = ({ property }) => (
     <div className="bg-white dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl 
       transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
@@ -512,7 +476,7 @@ const toggleFavorite = (propertyId) => {
 
               {/* Property Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 mb-20">
-                {filterProperties(properties[activeTab]).map(property => (
+                {PropertyFilters.filterProperties(properties[activeTab], selectedFilters, activeTab).map(property => (
                   <PropertyCard key={property.id} property={property} />
                 ))}
               </div>

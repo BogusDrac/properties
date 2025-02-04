@@ -2,42 +2,11 @@ import { useState, useEffect } from 'react';
 import { Heart, BedDouble, Bath, Car, Maximize } from "lucide-react";
 import { BiCart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { order, favorites, toggleFavorite, toggleOrder, toggleItem } from './save/PropertyManager';
 
 
 const Browse = ({ properties }) => {
   
-  // order and favorites to localstorage
-  const [order, setOrder] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-
-  const loadFromLocalStorage = (key, setState) => {
-    const data = localStorage.getItem(key);
-      if (data) {
-      setState(JSON.parse(data));
-    }
-  };
-
-  useEffect(() => {
-    loadFromLocalStorage('orderProperties', setOrder);
-    loadFromLocalStorage('propertyFavorites', setFavorites);
-  }, []);
-
-  const toggleItem = (key, state, setState, propertyId) => {
-    setState(prevState => {
-      const newState = prevState.includes(propertyId)
-        ? prevState.filter(id => id !== propertyId)
-        : [...prevState, propertyId];
-
-      localStorage.setItem(key, JSON.stringify(newState));
-      return newState;
-    });
-  };
-
-  const toggleOrder = (propertyId) => toggleItem('orderProperties', order, setOrder, propertyId);
-  const toggleFavorite = (propertyId) => toggleItem('propertyFavorites', favorites, setFavorites, propertyId);
-  //end
-
-
   const [showMoreBuy, setShowMoreBuy] = useState(false);
   const [showMoreRent, setShowMoreRent] = useState(false);
 
