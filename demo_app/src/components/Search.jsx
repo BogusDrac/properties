@@ -18,6 +18,7 @@ import img8 from "../assets/images/rdp8.jpg";
 import img9 from "../assets/images/rdp9.jpg";
 import img10 from "../assets/images/rdp10.jpg";
 import img11 from "../assets/images/rdp11.jpg";
+import img12 from "../assets/images/rdp12.jpg";
 
 
 
@@ -63,14 +64,14 @@ const properties = {
     },
     {
       id: 4,
-      title: "Villa",
+      title: "Condo",
       location: "Emagesini",
-      price: "R3,500,000",
+      price: "R3,200,000",
       type: "villas",
       bedrooms: 2,
       bathrooms: 2,
       garages: 1,
-      size: "200m²",
+      size: "95m²",
       image: img4,
     },
     {
@@ -85,11 +86,23 @@ const properties = {
       size: "500m²",
       image: img5,
     },
+    {
+      id: 6,
+      title: "Apartment",
+      location: "Makuleni",
+      price: "R900,000",
+      type: "apartments",
+      bedrooms: 5,
+      bathrooms: 4,
+      garages: 1,
+      size: "300m²",
+      image: img6,
+    },
   ],
 
   rent: [
     {
-      id: 6,
+      id: 7,
       title: "Cozy House",
       location: "Loliwe",
       price: "R2,500/month",
@@ -98,10 +111,10 @@ const properties = {
       bathrooms: 2,
       garages: 1,
       size: "200m²",
-      image: img6,
+      image: img7,
     },
     {
-      id: 7,
+      id: 8,
       title: "Studio Apartment",
       location: "Emagesini",
       price: "R1,500/month",
@@ -110,10 +123,10 @@ const properties = {
       bathrooms: 1,
       garages: 1,
       size: "45m²",
-      image: img7,
+      image: img8,
     },
     {
-      id: 8,
+      id: 9,
       title: "PentHouse",
       location: "Loliwe",
       price: "R1,000/month",
@@ -122,10 +135,10 @@ const properties = {
       bathrooms: 3,
       garages: 2,
       size: "180m²",
-      image: img8,
+      image: img9,
     },
     {
-      id: 9,
+      id: 10,
       title: "Apartment",
       location: "Emagesini",
       price: "R900/month",
@@ -134,10 +147,10 @@ const properties = {
       bathrooms: 2,
       garages: 1,
       size: "120m²",
-      image: img9,
+      image: img10,
     },
     {
-      id: 10,
+      id: 11,
       title: "Estate",
       location: "Makuleni",
       price: "R8,500/month",
@@ -146,10 +159,10 @@ const properties = {
       bathrooms: 2,
       garages: 1,
       size: "140m²",
-      image: img10,
+      image: img11,
     },
     {
-      id: 11,
+      id: 12,
       title: "Condo",
       location: "Emagesini",
       price: "R10,500/month",
@@ -158,7 +171,7 @@ const properties = {
       bathrooms: 2,
       garages: 2,
       size: "400m²",
-      image: img11,
+      image: img12,
     },
   ],
 };
@@ -249,13 +262,14 @@ const toggleFavorite = (propertyId) => {
           (selectedFilters.propertySize === 'xlarge' ? parseFloat(property.size) > 300 : true))))) &&
         (selectedFilters.priceRange === 'all' || 
           (activeTab === 'buy' ? 
-            (selectedFilters.priceRange === '1st' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) >= 200000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 400000 :
-            (selectedFilters.priceRange === '2nd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 400000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 600000 :
-            (selectedFilters.priceRange === '3rd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 600000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 800000 :
-            (selectedFilters.priceRange === '4th' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 800000 : true)))) :
-            (selectedFilters.priceRange === '1st' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) >= 2000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 3000 :
-            (selectedFilters.priceRange === '2nd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 3000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 4000 :
-            (selectedFilters.priceRange === '3rd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 4000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 5000 :
+            (selectedFilters.priceRange === '1st' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) >= 600000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 800000 :
+            (selectedFilters.priceRange === '2nd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 800000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 1000000 :
+            (selectedFilters.priceRange === '3rd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 1000000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 2000000 :
+            (selectedFilters.priceRange === '4th' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 2000000 : true)))) :
+            /* Rent */
+            (selectedFilters.priceRange === '1st' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) >= 2000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 4000 :
+            (selectedFilters.priceRange === '2nd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 4000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 8000 :
+            (selectedFilters.priceRange === '3rd' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 8000 && parseFloat(property.price.replace(/[^0-9.]/g, '')) <= 10000 :
             (selectedFilters.priceRange === '4th' ? parseFloat(property.price.replace(/[^0-9.]/g, '')) > 5000 : true))))))
       );
     });
@@ -455,17 +469,17 @@ const toggleFavorite = (propertyId) => {
                       options: activeTab === 'buy' 
                         ? [
                             { value: 'all', label: 'Any Price' },
-                            { value: '1st', label: 'R200k - R400k' },
-                            { value: '2nd', label: 'R400k - R600k' },
-                            { value: '3rd', label: 'R600k - R800k' },
-                            { value: '4th', label: 'R800k - R900k+' }
+                            { value: '1st', label: 'R600k - R800k' },
+                            { value: '2nd', label: 'R800k - R1M' },
+                            { value: '3rd', label: 'R1M - R2M' },
+                            { value: '4th', label: 'R2M - R3M+' }
                           ]
                         : [
                             { value: 'all', label: 'Any Price' },
-                            { value: '1st', label: 'R2k - R3k' },
-                            { value: '2nd', label: 'R3k - R4k' },
-                            { value: '3rd', label: 'R4k - R5k' },
-                            { value: '4th', label: 'R5k - R6k' }
+                            { value: '1st', label: 'R2k - R4k' },
+                            { value: '2nd', label: 'R4k - R6k' },
+                            { value: '3rd', label: 'R6k - R8k' },
+                            { value: '4th', label: 'R8k - R10k+' }
                           ]
                     }
                   ].map((field) => (
